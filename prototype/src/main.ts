@@ -285,6 +285,8 @@ canvas.addEventListener('pointerdown', (e) => {
   if (slot !== null) { view.selected = slot; syncUI(); }
 });
 
+canvas.addEventListener('pointercancel', () => { view.drag = null; });
+
 canvas.addEventListener('pointerup', () => {
   const d = view.drag;
   view.drag = null;
@@ -329,6 +331,7 @@ function idleHint(): string {
 
 function syncUI() {
   $('hint').innerHTML = tool ? HINTS[tool] : idleHint();
+  canvas.classList.toggle('aiming', tool === 'pulse');
   for (const t of TOOLS) {
     const b = $<HTMLButtonElement>(`tool-${t.id}`);
     b.setAttribute('aria-pressed', String(tool === t.id));
