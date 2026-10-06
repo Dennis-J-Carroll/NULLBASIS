@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Twin Relay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Big+Shoulders+Display:wght@600;800&family=Martian+Mono:wght@400;600&display=swap"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <header class="bar">
+        <div class="brand">
+          <span class="brand-mark">NULLBASIS</span>
+          <span class="brand-sub" id="encounter-name">Twin Relay</span>
+        </div>
+        <div class="clock" id="clock" aria-label="Combat clock">
+          <div class="clock-ring" id="clock-ring"><span id="tick-label">t0</span></div>
+          <div class="clock-meta">
+            <span class="label">Clock</span>
+            <span id="clock-mode">Turn-based</span>
+          </div>
+        </div>
+        <div class="meter" aria-label="Core integrity">
+          <span class="label">Core</span>
+          <div class="bar-track"><div class="bar-fill hp" id="hp-fill"></div></div>
+          <span class="num" id="hp-num">12.0</span>
+        </div>
+        <div class="meter" aria-label="Supply">
+          <span class="label">Supply</span>
+          <div class="bar-track"><div class="bar-fill supply" id="supply-fill"></div><div class="bar-mark" id="supply-mark"></div></div>
+          <span class="num" id="supply-num">—</span>
+        </div>
+        <div class="meter threat" aria-label="Threat">
+          <span class="label">Threat</span>
+          <div class="threat-track"><div class="threat-safe"></div><div class="threat-fill" id="threat-fill"></div><div class="threat-zero"></div></div>
+          <span class="num" id="threat-num">—</span>
+        </div>
+        <div class="streak" aria-label="Clean ticks in a row">
+          <span class="label">Clean</span>
+          <div class="pips" id="pips"></div>
+        </div>
+      </header>
+
+      <main class="deck">
+        <section class="stage" aria-label="Network">
+          <canvas id="board"></canvas>
+          <p class="hint" id="hint" aria-live="polite"></p>
+        </section>
+
+        <aside class="tools" aria-label="Tools">
+          <h2 class="panel-title">Tools</h2>
+          <div class="tool-list" id="tools"></div>
+          <div class="resources">
+            <div class="res"><span class="label">Bandwidth</span><div class="bar-track"><div class="bar-fill bw" id="bw-fill"></div></div><span class="num" id="bw-num">10</span></div>
+            <div class="res"><span class="label">Heat</span><div class="bar-track"><div class="bar-fill heat" id="heat-fill"></div></div><span class="num" id="heat-num">0</span></div>
+            <div class="res" id="freeze-row" hidden><span class="label">Freeze</span><div class="bar-track"><div class="bar-fill freeze" id="freeze-fill"></div></div><span class="num" id="freeze-num">100</span></div>
+          </div>
+          <div class="advance-row">
+            <button class="primary" id="advance" type="button">Advance tick <kbd>Space</kbd></button>
+            <button class="ghost" id="freeze" type="button" hidden>Freeze <kbd>F</kbd></button>
+          </div>
+        </aside>
+
+        <aside class="inspector" aria-label="Inspector">
+          <h2 class="panel-title">Inspector</h2>
+          <div id="inspector"></div>
+          <h2 class="panel-title">Ledger</h2>
+          <ol class="ledger" id="ledger" reversed></ol>
+        </aside>
+      </main>
+
+      <div class="overlay" id="overlay" hidden>
+        <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "nullbasis-twin-relay",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && node scripts/strip-skeleton.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "scenarios": "node --experimental-strip-types --no-warnings scripts/scenarios.ts"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vitest": "^5.0.3"
+  }
+}

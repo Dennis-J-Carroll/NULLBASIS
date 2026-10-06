@@ -7,10 +7,16 @@ at their source.
 
 - [`docs/DESIGN.md`](docs/DESIGN.md): the full game design document (pitch, systems, tools,
   enemies, levels, boss, worked puzzle, schema, prototype architecture, premortem).
-- [`scripts/verify-leaning-relay.mjs`](scripts/verify-leaning-relay.mjs): headless,
-  dependency-free simulation of the worked encounter. Every number in the design
-  doc's §10–12 comes from it.
+- [`prototype/`](prototype/): **Twin Relay**, the first playable experiment (§22.4 of the
+  design doc). Two visually identical relay lines, one with a lying screen and one
+  that really bends the signal, served in random order, with built-in prediction
+  prompts and a copyable playtest log.
 
 ```sh
-node scripts/verify-leaning-relay.mjs
+cd prototype
+npm install
+npm run dev        # play locally
+npm test           # simulation tests (every number in DESIGN.md §10–12)
+npm run scenarios  # prints each scripted playthrough tick by tick
+npm run build      # single-file build: dist/index.html and dist/twin-relay.html
 ```
